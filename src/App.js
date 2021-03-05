@@ -5,7 +5,7 @@ const URL = "http://localhost/shoppinglist/";
 
 function App() {
   const [item, setItem] = useState(""); // variables for adding items
-  const [amount, setAmount] = useState()
+  const [amount, setAmount] = useState("")
   const [items, setItems] = useState([]); // variable for rendering shopping list
 
   function add(e) {
@@ -31,7 +31,7 @@ function App() {
       	if (status === 200) {
       	  setItems(items => [...items, res]);
           setItem("");
-          setAmount(0)
+          setAmount("");
       	} else {
       	  alert(res.error)
       	}
@@ -52,7 +52,7 @@ function App() {
       }
     )
   }, [])
-  
+
   return (
     <div className="App">
       <h2>Shopping List</h2>
@@ -65,14 +65,38 @@ function App() {
         </form>
       </div>
       <div className="list" >
-        <ol>
-          {items.map(item => (
-            <li key={item.id} ><span className="itemdesc">{item.description}</span><span className="itemamount">{item.amount}</span></li>
+        <table style={{width: "100%"}} >
+          <colgroup>
+            <col span="1" style={{width: "60%"}} />
+            <col span="1" style={{width: "20%"}} />
+            <col span="1" style={{width: "20%"}} />
+          </colgroup>
+          <tbody>
+            <tr>
+              <th>Item</th>
+              <th>Amount</th>
+              <th></th>
+            </tr>
+            {items.map((item, i) => (
+            <tr key={item.id} >
+              <td className="itemdesc" >&nbsp;&nbsp;&nbsp;{item.description}</td>
+              <td className="itemamount">{item.amount}</td>
+              <td><a className="delete" href="#">Delete</a></td> 
+            </tr>
           ))}
-        </ol>
+          </tbody>
+          
+          
+        </table>
+        {/* <ol>
+          {items.map(item => (
+            <li key={item.id} ><span className="itemdesc">{item.description}</span>&nbsp;<span className="itemamount">{item.amount}</span></li>
+          ))}
+        </ol> */}
       </div>
     </div>
   );
 }
 
 export default App;
+// onClick={() => remove.(item.id)}

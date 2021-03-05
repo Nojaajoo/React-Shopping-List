@@ -1,10 +1,12 @@
 .App {
   display: flex;
+  /* margin-left: auto;
+  margin-right: auto; */
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 20%;
+  text-align: center;
+  /* flex-wrap: wrap; */
+  margin-top: 20%;
 }
 
 form {
@@ -33,32 +35,72 @@ form {
   width: 60px;
 }
 
-ol {
-  text-align: right;
+table {
+  background-color: blanchedalmond;
+  padding: 30px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
+  border-spacing:0px;
 }
 
-/* ol:nth-child(odd) {
+@media only screen and (max-width: 750px) {
+  table {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  table {
+    max-width: 40%;
+  }
+}
+
+th,
+td {
+  padding: 0.5em;
+}
+
+table tbody tr:nth-child(odd) {
   background-color: rgb(252, 252, 181);
   padding: 0.5em;
   padding-left: 2em;
   padding-right: 2em;
-  border-radius: 15px;
-  width: 200px;
-
+  /* border-radius: 15px; */
 }
 
-ol:nth-child(even) {
-  background-color: orange;
+table tbody tr:nth-child(even) {
+  background-color: white;
   padding: 0.5em;
   padding-left: 2em;
   padding-right: 2em;
-  border-radius: 15px;
-  width: 200px;
+  /* border-radius: 15px; */
+}
 
+table tbody th:first-child {
+  border-top-left-radius: 15px;
+}
+
+table tbody th:last-child {
+  border-top-right-radius: 15px;
+}
+
+/* tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 15px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 15px;
 } */
 
-ol .itemamount {
-  text-align: right;
-  margin-left: 50px;
+
+
+.itemamount {
+  text-align: center;
+}
+
+.itemdesc {
+  text-align: left;
 }
 
