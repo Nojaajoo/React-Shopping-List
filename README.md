@@ -1,3 +1,20 @@
+Käytin Delete napissa fontAwesome iconeita, en ollut varma miten ne kulkeutuvat testattavaksi näin githubin kautta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
