@@ -1,12 +1,18 @@
 import {useState, useEffect} from "react";
 import './App.css';
 
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const deletebutton = <FontAwesomeIcon icon={faTrashAlt} />
 const URL = "http://localhost/shoppinglist/";
+
 
 function App() {
   const [item, setItem] = useState(""); // variables for adding items
   const [amount, setAmount] = useState("")
   const [items, setItems] = useState([]); // variable for rendering shopping list
+
 
   function add(e) {
     e.preventDefault();
@@ -34,6 +40,36 @@ function App() {
           setAmount("");
       	} else {
       	  alert(res.error)
+      	}
+      }, (error) => {
+      	alert(error);
+      }
+    )
+  }
+
+  function remove(id) {
+    let status = 0;
+    fetch( URL + "/remove.php" ,{
+      method: 'POST',
+      headers: {
+      	'Accept': 'application/json',
+      	'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+      	id: id
+      })
+    })
+    .then(res => {
+      status = parseInt(res.status);
+      return res.json()
+    })
+    .then(
+      (res) => {
+      	if (status === 200) {
+      	const newListWithoutRemoved = items.filter((item) => item.id !== id);
+        setItems(newListWithoutRemoved);
+      	} else {
+      	alert(res.error)
       	}
       }, (error) => {
       	alert(error);
@@ -77,26 +113,18 @@ function App() {
               <th>Amount</th>
               <th></th>
             </tr>
-            {items.map((item, i) => (
+            {items.map((item, i) => ( // yritin saada conditional styling niin, että alimman rivin reunat pyöristyisi, en saanut kuitenkaan toimimaan uusia rivejä lisätessä
             <tr key={item.id} >
-              <td className="itemdesc" >&nbsp;&nbsp;&nbsp;{item.description}</td>
+              <td style={items.length -1 === i ? {borderBottomLeftRadius: "15px"} : {} } className="itemdesc" >&nbsp;&nbsp;&nbsp;{item.description}</td>
               <td className="itemamount">{item.amount}</td>
-              <td><a className="delete" href="#">Delete</a></td> 
+              <td style={items.length -1 === i ? {borderBottomRightRadius: "15px", textAlign: "right"} : {textAlign: "right"} } ><a onClick={() => remove(item.id)} className="delete" href="#">{deletebutton}</a></td>
             </tr>
           ))}
           </tbody>
-          
-          
         </table>
-        {/* <ol>
-          {items.map(item => (
-            <li key={item.id} ><span className="itemdesc">{item.description}</span>&nbsp;<span className="itemamount">{item.amount}</span></li>
-          ))}
-        </ol> */}
       </div>
     </div>
   );
 }
 
 export default App;
-// onClick={() => remove.(item.id)}
