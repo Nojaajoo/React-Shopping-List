@@ -3,9 +3,18 @@
   flex-direction: column;
   justify-content: flex-start;
   text-align: center;
-  margin-top: 20%;
+  color: darkred;
+  font-weight: 500;
 }
 
+.otsikko {
+  font-weight: 800;
+  font-size: 2em;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+/* lisäyslomakkeen tyylit */
 form {
   display: inline-flex;
   background-color: blanchedalmond;
@@ -14,12 +23,20 @@ form {
   margin: 5px;
 }
 
+.form {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #add {
   color: rgb(88, 2, 2);
   background-color: darksalmon;
   border: none;
   border-radius: 8px;
   padding: 4px;
+  font-weight: bold;
+  margin: 0.5em;
+  margin-bottom: 0em;
 }
 
 #add:hover {
@@ -43,6 +60,7 @@ input:focus {
   width: 60px;
 }
 
+/* ostoslistan tyylit */
 table {
   background-color: blanchedalmond;
   padding: 30px;
@@ -66,8 +84,8 @@ table {
 }
 
 th {
-background-color: darksalmon;
-color: rgb(88, 2, 2);
+background-color: rgb(88, 2, 2);
+color: darksalmon;
 }
 
 th,
